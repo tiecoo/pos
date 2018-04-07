@@ -1,0 +1,34 @@
+*
+  margin 0px
+.navForSection
+    height 70px
+    display flex
+    background-color #555
+    // flex-wrap wrap
+    justify-content  space-between
+    align-items center
+    flex-direction row
+
+
+    &__item
+        font-family Helvetica 
+        height 100%
+        display flex
+    
+
+    &__link
+        color #ffffff
+        text-decoration none   
+        background-color purple
+        height 100%
+        display flex
+        align-items center
+        padding 0 10px 
+
+    @media screen and (max-width:800px)
+      flex-direction column
+      
+      .navForSection__item, .navForSection__relevant2, .navForSection__link
+        width 100%
+        border-bottom 2px solid
+      

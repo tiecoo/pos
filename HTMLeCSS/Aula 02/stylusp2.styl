@@ -1,0 +1,53 @@
+//Mixins
+bootle(w=64%, cl1=0, cl2=0)
+  width w
+  margin cl1 auto cl2
+
+  @media screen and (max-width: 1024px)
+    width: 90%
+  @media screen and (max-width: 800px)
+    width: 95%
+  @media screen and (max-width: 400px)
+    width 100%
+
+*
+  padding 0
+  margin 0
+  border 0
+  list-style none
+  text-decoration none
+  font-family Helvetica, sans-serif
+  
+hr
+  display none
+  
+.header
+  display flex
+  align-items center
+  background-color #333
+  height 100px
+  padding 20px
+  color #fff
+  
+  &__bootle
+    bootle()
+  &__nav
+    display flex 
+    flex-direction row
+    justify-content space-between
+  
+  &__relevant1
+    font-size 1 rem
+  
+.content
+  padding 20px
+  &__sidebar
+   background-color #999
+     
+  &__main
+   background-color blue
+     
+.footer
+  padding 20px
+  height 200px
+  background-color yellow

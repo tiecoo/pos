@@ -1,0 +1,36 @@
+* {
+  margin: 0px;
+}
+.navForSection {
+  height: 70px;
+  display: flex;
+  background-color: #555;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.navForSection__item {
+  font-family: Helvetica;
+  height: 100%;
+  display: flex;
+}
+.navForSection__link {
+  color: #fff;
+  text-decoration: none;
+  background-color: #800080;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+@media screen and (max-width: 800px) {
+  .navForSection {
+    flex-direction: column;
+  }
+  .navForSection .navForSection__item,
+  .navForSection .navForSection__relevant2,
+  .navForSection .navForSection__link {
+    width: 100%;
+    border-bottom: 2px solid;
+  }
+}
