@@ -7,6 +7,7 @@ Formularios avançados
 como os types certos e required
 Types of input = https://www.w3schools.com/html/html_form_input_types.asp
 
+###Pré-processadores
 Tem gente que usa JS para criar hover
 CSS esta quebrando o efeito cascata
 
@@ -19,7 +20,7 @@ $ stylus -w <nomearquivo>.styl -o style.css
 ```
 the W stands for <b>Watch</b>
 
-Caso tenha interesse em ver como faz do Sass, vide o Github do [Rafael Lima](https://github.com/rafaelim/HTML-CSS)
+Caso tenha interesse em ver como faz do Sass, vide o Github do [Rafael Lima](https://github.com/rafaelim/HTML-CSS/blob/master/second-class/exercice-1/main.scss)
 
 <b>Voce pode tambem colocar varias classe juntos:</b>
 ```sh
@@ -30,3 +31,9 @@ Caso tenha interesse em ver como faz do Sass, vide o Github do [Rafael Lima](htt
 Tag 'hr' é visto com bons olhos
 
 é possivel criar classes no Stylus
+
+Bootstrap nao consegue prever a mudança de layout
+
+###SVG
+
+Para telas de retina, como o do iMac é melhor utilizar SVG do que PNG, pois quando pixelada elas nao estouram
