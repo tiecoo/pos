@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style h></style>
+    <title>Title of the document</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    </head>
+
+<body>
+    <h1>Frase do dia</h1>
+    <div id="quote-space">
+        <div id="quote">
+
+        </div>
+        <div id="quote-author">
+
+        </div>
+        <div id="quote-link">
+            <a id="link" target="_blank"></a>
+        </div>
+        <button id="button">Nova frase</button>
+    </div>
+    <script>
+        $(document).ready(function () {
+            function getQuote() {
+                console.log('b');
+                $('#quote').append('');
+                var url = "https://api.forismatic.com/api/1.0/";
+                var params = "?method=getQuote&lang=en&format=jsonp&jsonp=?"
+                $.getJSON(url + params, function (response) {
+                    console.log(response);
+                    $('#quote').html('<p>' + response.quoteText + '</p>');
+                    $('#quote-author').html('<p>' + response.quoteAuthor + '</p>');
+                    $("#link").html("Link").attr("href", response.quoteLink);
+                })
+            }
+            getQuote();
+            $('#button').click(getQuote);
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style h></style>
+    <title>Clima do dia</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <script src="./skycons/skycons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Temperatura
+                <canvas id="icon1" width="128" height="128"></canvas>
+                <canvas id="icon2" width="128" height="128"></canvas>
+            </h1>
+        </div>
+        <div class="input-group mb-3 col-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Temperatura</span>
+            </div>
+            <input type="text" class="form-control" id="temperature" aria-label="Username" aria-describedby="basic-addon1" disabled>
+        </div>
+        <div class="input-group mb-3 col-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Sensação termica</span>
+            </div>
+            <input type="text" class="form-control" id="temperatureapparent" aria-label="Username" aria-describedby="basic-addon1" disabled>
+        </div>
+        <div class="input-group mb-3 col-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Descrição</span>
+            </div>
+            <input type="text" class="form-control" id="description" aria-label="Username" aria-describedby="basic-addon1" disabled>
+        </div>
+        <div class="input-group mb-3 col-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Timezone</span>
+            </div>
+            <input type="text" class="form-control" id="timezone" aria-label="Username" aria-describedby="basic-addon1" disabled>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var skycons = new Skycons({ "color": "black" });
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                }
+            }
+            function showPosition(position) {
+                var url = "https://api.darksky.net/forecast/d8595742e7a758f2646816767a3709d8/" + position.coords.latitude + "," + position.coords.longitude + "?callback=?"
+                getWeather(url);
+            }
+
+            function farenheito(temp) {
+                return (temp - 32) * 5 / 9;
+            }
+
+            function getWeather(url) {
+                $.getJSON(url, function (response) {
+                    console.log(JSON.stringify(response));
+                    skycons.add("icon1", response.currently.icon);
+                    skycons.play();
+                    var celsius = farenheito(response.currently.temperature);
+                    var celsiusapparent = farenheito(response.currently.apparentTemperature);
+                    $('#temperature').attr("value", celsius.toFixed(2) + " ºC/ " + response.currently.temperature.toFixed(2) + " Fahrenheit");
+                    $('#temperatureapparent').attr("value", celsiusapparent.toFixed(2) + " Celsius/ " + response.currently.apparentTemperature.toFixed(2) + " Fahrenheit");
+                    $('#description').attr("value", response.currently.summary);
+                    $('#timezone').attr("value", response.timezone);
+                })
+            }
+            getLocation();
+        });
+
+    </script>
+</body>
+
+</html>
