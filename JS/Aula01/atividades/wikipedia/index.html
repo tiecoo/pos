@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style h></style>
+    <title>Busca Wikipedia</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <script src="./skycons/skycons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Busca Wikipedia
+            </h1>
+        </div>
+        <div class="input-group mb-3 col-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Busca</span>
+            </div>
+            <input type="text" class="form-control" id="search" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <button id="submit">Vai</button>
+        <div id="resposta" class="col-12"></div>
+    </div>
+    <script>
+        $(() => {
+            $('#submit').click(function () {
+                console.log($('#search').val());
+                let resp = $.getJSON(`https://en.wikipedia.org/w/api.php?action=opensearch&search=${$('#search').val()}&limit=10&format=json&callback=?`);
+                resp.catch(err => console.log(err));
+                resp.then(resp => {
+                    console.log(resp)
+                    for (let i = 0; i < resp[1].length; i++) {
+                        $('#resposta').append(`<h3><a href="${resp[3][i]}" target="_blank">${resp[1][i]}</a> <small>${resp[2][i]}</small></h3>`)
+                    }
+                })
+            })
+        });
+
+    </script>
+</body>
+
+</html>
